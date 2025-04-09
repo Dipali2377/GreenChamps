@@ -50,6 +50,14 @@ greenchamps/
 {
   "message": "User registered successfully"
 }
+```
+
+### 📝 Login API
+
+**URL:**  
+`POST http://localhost:6000/api/auth/login`
+
+```json
 
 // Request
 {
