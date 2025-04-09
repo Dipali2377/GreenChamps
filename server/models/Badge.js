@@ -15,6 +15,10 @@ const badgeSchema = new Schema(
       type: String,
       required: true,
     },
+    requiredChallenges: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
