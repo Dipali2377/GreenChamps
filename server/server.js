@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config(); // to access the enviroment variables
 
@@ -18,6 +19,8 @@ const PORT = process.env.PORT || 6000;
 app.get("/", (req, res) => {
   res.send("GreenChamps API is running!");
 });
+
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, async () => {
   await connectDB();
