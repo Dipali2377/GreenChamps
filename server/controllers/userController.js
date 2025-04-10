@@ -41,4 +41,14 @@ const getDashboard = async (req, res) => {
   }
 };
 
-export { getUserProfile, getDashboard };
+// Route: GET /api/users/badges
+const getUserBadges = async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.user._id).populate("badges");
+    res.status(200).json(user.badges);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getUserProfile, getDashboard, getUserBadges };
