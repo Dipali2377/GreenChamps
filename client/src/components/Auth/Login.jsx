@@ -1,11 +1,15 @@
 // LoginForm.jsx
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 import "./Login.css";
+import { UserContext } from "../../context/UserContext";
 
 const LoginForm = () => {
+  const { setUser } = useContext(UserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,6 +28,8 @@ const LoginForm = () => {
       const { token, user } = response.data;
       localStorage.setItem("greenchampsToken", token);
       localStorage.setItem("greenchampsUser", JSON.stringify(user));
+
+      setUser(response.data.user);
       toast.success("Login successful!");
 
       setTimeout(() => {

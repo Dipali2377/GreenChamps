@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Home from "./components/Home";
 import PrivateRoute from "./components/PrivateRoute";
 import Dashboard from "./components/Dashboard";
+import ChallengeLibrary from "./components/ChallengeLibrary";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/challenges"
+          element={
+            <PrivateRoute>
+              <ChallengeLibrary />
             </PrivateRoute>
           }
         />
