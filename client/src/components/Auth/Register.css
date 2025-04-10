@@ -1,0 +1,18 @@
+.auth-form p {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #444;
+  text-align: center;
+}
+
+.auth-form p a {
+  color: #2e7d32; /* Eco-friendly green */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-form p a:hover {
+  color: #1b5e20; /* Darker shade of green on hover */
+  text-decoration: underline;
+}

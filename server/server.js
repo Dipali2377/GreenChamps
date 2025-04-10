@@ -10,11 +10,17 @@ dotenv.config(); // to access the enviroment variables
 
 const app = express(); //created the express server
 
-app.use(cors()); //used third-party middleware to enable the cross origin resource sharing
+app.use(
+  cors({
+    origin: "http://localhost:5173", // frontend port
+    credentials: true,
+  })
+);
+//used third-party middleware to enable the cross origin resource sharing
 
 app.use(express.json()); // used in-built middleware for json-parser to post the data through http requests
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 8080;
 
 // sample route
 

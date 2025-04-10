@@ -8,6 +8,8 @@ const saltRounds = 10;
 // user registration
 
 const registerUser = async (req, res) => {
+  console.log("Received body in register route:", req.body);
+
   try {
     const { name, email, password } = req.body; // destructuring the email and password from req body
 
@@ -25,6 +27,7 @@ const registerUser = async (req, res) => {
 
       if (err) {
         console.log(err);
+        return res.status(500).json({ message: "Error hashing password" });
       } else {
         const userData = new UserModel({ name, email, password: hash });
         // console.log("user data new -->", userData);
