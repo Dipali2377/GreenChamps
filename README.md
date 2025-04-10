@@ -1,4 +1,60 @@
-## Files Folder Structure 🗃️📂
+# 🌱 GreenChamps
+
+**GreenChamps** is an eco-conscious MERN stack web application that encourages users to complete daily sustainable challenges and earn digital badges. It promotes environmental responsibility in a fun, trackable way through engaging challenges and visual progress indicators.
+
+---
+
+## Project Preview
+
+### Home Page
+
+![Dashboard Screenshot](./client/src/assets/homepage.jpeg)
+
+### 🎯 Dashboard with Daily Challenge
+
+![Dashboard Screenshot](./client/src/assets/dashboard.jpeg)
+
+### 🏅 Badge Display
+
+![Badges Screenshot](./client/src/assets/badges.jpeg)
+
+### 📚 Challenge Library
+
+![Library Screenshot](./client/src/assets/challenge-library.jpeg)
+
+## 🚀 Features
+
+- ✅ **User Authentication** (Register/Login with JWT)
+- 📅 **Daily Eco-Challenges** with completion tracking
+- 🏅 **Badges** earned by completing challenges
+- 📚 **Challenge Library** to view all available challenges.
+- 🎨 **Responsive UI** with icons, animations, and custom CSS
+- 🔒 Protected routes for user-specific data
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**
+
+- React
+- Axios
+- React Icons
+- Custom CSS (no Tailwind)
+
+**Backend**
+
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+- JSON Web Tokens (JWT)
+- dotenv
+
+---
+
+## 📁 Folder Structure
+
+## Sample Files Folder Structure 🗃️📂
 
 ```
 
