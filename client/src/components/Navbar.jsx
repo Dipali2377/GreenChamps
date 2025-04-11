@@ -5,11 +5,13 @@ import "../styles/Navbar.css";
 import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
 import logo from "../assets/greenchamps-logo.png";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,34 +30,57 @@ const Navbar = () => {
     localStorage.removeItem("greenchampsToken");
     setUser(null);
     navigate("/login");
+    setMenuOpen(false);
   };
 
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+    setDropdownOpen(false);
+  };
   return (
     <nav className="navbar">
       <Link to="/">
         <img src={logo} alt="GreenChamps Logo" className="logo-img" />
       </Link>
 
-      <ul className="navbar-links">
+      <button className="menu-toggle" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
+      <ul className={`navbar-links ${menuOpen ? "active" : ""}`}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/challenges">Challenges</Link>
+          <Link to="/challenges" onClick={() => setMenuOpen(false)}>
+            Challenges
+          </Link>
         </li>
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+            Dashboard
+          </Link>
         </li>
 
         {!user ? (
           <>
             <li>
-              <Link to="/login" className="btn login-btn">
+              <Link
+                to="/login"
+                className="btn login-btn"
+                onClick={() => setMenuOpen(false)}
+              >
                 Login
               </Link>
             </li>
             <li>
-              <Link to="/register" className="btn register-btn">
+              <Link
+                to="/register"
+                className="btn register-btn"
+                onClick={() => setMenuOpen(false)}
+              >
                 Register
               </Link>
             </li>
