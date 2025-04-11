@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Dashboard.css";
+//import "./Dashboard.css";
+import "../styles/Dashboard.css";
 import { FaLeaf, FaStar, FaLock } from "react-icons/fa";
 import Confetti from "react-confetti";
 import { Tooltip } from "react-tooltip";

@@ -1,0 +1,227 @@
+.dashboard-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-image: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard-title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  font-family: "Lobster", cursive;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 10px 10px 20px green;
+}
+
+.challenge-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1300px;
+}
+
+.challenge-card {
+  background-color: green;
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  padding: 2rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px double #161b14;
+}
+
+.challenge-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+}
+
+.challenge-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: black;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.challenge-description {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #fdfdfd;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.5;
+}
+
+.challenge-points {
+  font-weight: bold;
+  color: #fffbe6;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.challenge-icon {
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+.complete-btn {
+  background-color: #ffffff;
+  color: #333;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.complete-btn:hover {
+  background-color: #ffd700;
+  transform: scale(1.05);
+}
+
+/* Top section layout */
+.top-dashboard-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 3rem;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.progress-section {
+  flex: 1 1 40%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.progress-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: black;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  overflow: hidden;
+  height: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, #a3e635, #65a30d);
+  transition: width 0.4s ease;
+  border: 2px solid #65a30d;
+}
+
+/* === BADGE SECTION === */
+
+.badge-section {
+  flex: 1 1 55%;
+  text-align: center;
+}
+
+.badge-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: black;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.badge-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.badge-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+  border: 2px solid #ccc;
+  color: #000;
+}
+
+.badge-card:hover {
+  transform: scale(1.08);
+}
+
+/* Earned badge styling */
+.badge-card.earned {
+  border-color: #4caf50;
+  background-color: #e6ffe6;
+}
+
+/* Locked badge styling */
+.badge-card.locked {
+  opacity: 0.6;
+  background-color: #f5f5f5;
+  filter: grayscale(100%);
+}
+
+.badge-icon {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.badge-name {
+  font-weight: bold;
+}
+
+/* === CHALLENGE FORM SECTION === */
+
+.create-challenge-section {
+  margin: 30px auto;
+  max-width: 600px;
+  background: #f0fff4;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+}
+
+.challenge-form input,
+.challenge-form textarea {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+}
+
+.challenge-form button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.challenge-form button:hover {
+  background-color: #388e3c;
+}
