@@ -131,3 +131,43 @@ greenchamps/
   }
 }
 ```
+
+---
+
+## 💻 How to Setup and Run the Project Locally
+
+Follow the steps below to access and run the GreenChamps project on your machine.
+
+### 🔗 1. Clone the Repository
+
+```bash
+git clone https://github.com/Dipali2377/GreenChamps.git
+cd greenchamps
+```
+
+## 2. Navigate and Install Dependencies
+
+cd client
+npm install
+
+cd ../server
+npm install
+
+## 3.Setup Environment Variables
+
+.env file will contain the environment variables
+
+## 4. Start the application
+
+cd server
+npm start
+
+cd client
+npm run dev
+
+---
+
+## 🌐 Live Demo
+
+Check out the live version of **GreenChamps** here:  
+👉 [GreenChamps Live](https://greenchamps.netlify.app/)
