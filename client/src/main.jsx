@@ -7,7 +7,6 @@ import axios from "axios";
 import { UserProvider } from "./context/UserContext";
 // setting base url globally
 
-//axios.defaults.baseURL = "http://localhost:6000/api";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>

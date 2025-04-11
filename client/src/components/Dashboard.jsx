@@ -5,6 +5,8 @@ import { FaLeaf, FaStar, FaLock } from "react-icons/fa";
 import Confetti from "react-confetti";
 import { Tooltip } from "react-tooltip";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
 import "react-tooltip/dist/react-tooltip.css";
 
 const Dashboard = () => {
@@ -15,20 +17,13 @@ const Dashboard = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [prevBadgeCount, setPrevBadgeCount] = useState(0);
 
-  //   const [newChallenge, setNewChallenge] = useState({
-  //     title: "",
-  //     description: "",
-  //     points: "",
-  //     isDaily: false,
-  //   });
-
   const user = JSON.parse(localStorage.getItem("greenchampsUser"));
   const token = localStorage.getItem("greenchampsToken");
 
   // 🔹 Fetch all daily challenges
   const fetchChallenges = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/challenges");
+      const response = await axios.get(`${baseURL}/api/challenges`);
       const daily = response.data.filter((challenge) => challenge.isDaily);
       setChallenges(daily);
     } catch (error) {
@@ -38,12 +33,9 @@ const Dashboard = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/api/users/profile",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`${baseURL}/api/users/profile`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
 
       const { completedChallenges, badges } = response.data;
 
@@ -69,7 +61,7 @@ const Dashboard = () => {
   const handleComplete = async (challengeId) => {
     try {
       await axios.post(
-        `http://localhost:8080/api/challenges/complete/${challengeId}`,
+        `${baseURL}/api/challenges/complete/${challengeId}`,
         {},
         {
           headers: {

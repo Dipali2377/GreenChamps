@@ -3,6 +3,8 @@ import axios from "axios";
 import "../styles/ChallengeLibrary.css";
 import { FaLeaf, FaLock, FaCheckCircle } from "react-icons/fa";
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
+
 const ChallengeLibrary = () => {
   const [allChallenges, setAllChallenges] = useState([]);
   const [completed, setCompleted] = useState([]);
@@ -12,7 +14,7 @@ const ChallengeLibrary = () => {
 
   const fetchChallenges = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/challenges");
+      const res = await axios.get(`${baseURL}/api/challenges`);
       setAllChallenges(res.data);
     } catch (err) {
       console.error("Error fetching challenges:", err);
@@ -21,7 +23,7 @@ const ChallengeLibrary = () => {
 
   const fetchUserData = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/users/profile", {
+      const res = await axios.get(`${baseURL}/api/users/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -90,7 +90,7 @@ greenchamps/
 ### 📝 Register API
 
 **URL:**  
-`POST http://localhost:6000/api/auth/register`
+`POST http://localhost:8080/api/auth/register`
 
 **Example:**
 
@@ -111,7 +111,7 @@ greenchamps/
 ### 📝 Login API
 
 **URL:**  
-`POST http://localhost:6000/api/auth/login`
+`POST http://localhost:8080/api/auth/login`
 
 ```json
 

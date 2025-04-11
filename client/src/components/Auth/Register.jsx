@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./Register.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 const RegisterForm = () => {
   //   const [name, setName] = useState("");
@@ -27,12 +28,12 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       //   const response = await axios.post(
-      //     "http://localhost:6000/api/auth/register",
+      //     "http://localhost:8080/api/auth/register",
 
       //     { ...formData }
       //   );
       const response = await axios.post(
-        "http://localhost:8080/api/auth/register",
+        `${baseURL}/api/auth/register`,
         { ...formData },
         {
           headers: {

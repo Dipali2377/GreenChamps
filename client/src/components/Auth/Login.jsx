@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 import "./Login.css";
 import { UserContext } from "../../context/UserContext";
@@ -18,13 +19,10 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${baseURL}/api/auth/login`, {
+        email,
+        password,
+      });
       const { token, user } = response.data;
       localStorage.setItem("greenchampsToken", token);
       localStorage.setItem("greenchampsUser", JSON.stringify(user));
