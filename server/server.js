@@ -12,8 +12,7 @@ const app = express(); //created the express server
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // frontend port
-    credentials: true,
+    origin: ["http://localhost:5173", "https://greenchamps.netlify.app"], // frontend port
   })
 );
 //used third-party middleware to enable the cross origin resource sharing
