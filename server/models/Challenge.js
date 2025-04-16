@@ -19,6 +19,9 @@ const challengeSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    category: {
+      enum: ["Water", "Waste", "Energy", "Nature", "Awareness", "Other"],
+    },
   },
   {
     timestamps: true,

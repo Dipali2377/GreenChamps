@@ -28,7 +28,10 @@ const createChallenge = async (req, res) => {
 
 const getChallenges = async (req, res) => {
   try {
-    const challenges = await ChallengeModel.find();
+    const { category } = req.query;
+
+    const filter = category ? { category } : {};
+    const challenges = await ChallengeModel.find(filter);
     res.status(200).json(challenges);
   } catch (error) {
     res.status(500).json({ message: error.message });
