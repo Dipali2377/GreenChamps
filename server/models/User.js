@@ -17,6 +17,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
     completedChallenges: [{ type: Schema.Types.ObjectId, ref: "Challenge" }],
 
     badges: [
