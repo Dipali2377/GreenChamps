@@ -12,9 +12,15 @@ const ChallengeLibrary = () => {
 
   const token = localStorage.getItem("greenchampsToken");
 
-  const fetchChallenges = async () => {
+  //accepts category param and fetches from backend accordingly
+  const fetchChallenges = async (category = "All") => {
     try {
-      const res = await axios.get(`${baseURL}/api/challenges`);
+      const url =
+        category === "All"
+          ? `${baseURL}/api/challenges`
+          : `${baseURL}/api/challenges?category=${category.toLocaleLowerCase()}`; // ⭐ MODIFIED
+      const res = await axios.get(url);
+      console.log("fetched challenges", res.data);
       setAllChallenges(res.data);
     } catch (err) {
       console.error("Error fetching challenges:", err);
@@ -29,6 +35,7 @@ const ChallengeLibrary = () => {
         },
       });
       const { completedChallenges } = res.data;
+      console.log("✅ Completed Challenges from backend:", completedChallenges);
       setCompleted(completedChallenges.map((c) => c._id));
     } catch (err) {
       console.error("Error fetching user profile:", err);
@@ -36,19 +43,31 @@ const ChallengeLibrary = () => {
   };
 
   useEffect(() => {
-    fetchChallenges();
     fetchUserData();
   }, []);
 
-  const filterChallenges = () => {
-    if (filterCategory === "All") return allChallenges;
-    return allChallenges.filter((ch) => ch.category === filterCategory);
-  };
+  // This now depends on filterCategory and fetches challenges accordingly
+  useEffect(() => {
+    fetchChallenges(filterCategory);
+  }, [filterCategory]);
+
+  // No need to filter challenges on frontend now
+  // const filterChallenges = () => {
+  //   if (filterCategory === "All") return allChallenges;
+  //   return allChallenges.filter((ch) => ch.category === filterCategory);
+  // };
 
   const groupedChallenges = () => {
-    const filtered = filterChallenges();
-    const completedList = filtered.filter((ch) => completed.includes(ch._id));
-    const lockedList = filtered.filter((ch) => !completed.includes(ch._id));
+    const completedSet = new Set(completed.map((id) => id.toString()));
+
+    const completedList = allChallenges.filter((ch) =>
+      completedSet.has(ch._id.toString())
+    );
+
+    const lockedList = allChallenges.filter(
+      (ch) => !completedSet.has(ch._id.toString())
+    );
+
     return { completedList, lockedList };
   };
 
@@ -64,11 +83,11 @@ const ChallengeLibrary = () => {
           value={filterCategory}
           onChange={(e) => setFilterCategory(e.target.value)}
         >
-          <option>All</option>
-          <option>Water</option>
-          <option>Waste</option>
-          <option>Energy</option>
-          <option>Nature</option>
+          <option value="All">All</option>
+          <option value="Water">Water</option>
+          <option value="Waste">Waste</option>
+          <option value="Energy">Energy</option>
+          <option value="Nature">Nature</option>
         </select>
       </div>
 

@@ -8,8 +8,6 @@ const saltRounds = 10;
 // user registration
 
 const registerUser = async (req, res) => {
-  console.log("Received body in register route:", req.body);
-
   try {
     const { name, email, password } = req.body; // destructuring the email and password from req body
 
@@ -30,7 +28,7 @@ const registerUser = async (req, res) => {
         return res.status(500).json({ message: "Error hashing password" });
       } else {
         const userData = new UserModel({ name, email, password: hash });
-        // console.log("user data new -->", userData);
+
         await userData.save();
         res.status(201).json({ message: "User registered successfully" });
       }
@@ -44,10 +42,10 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await UserModel.findOne({ email }); // checking if the user exist
+    const user = await UserModel.findOne({ email });
 
     if (!user) {
-      res.status(401).json({
+      return res.status(401).json({
         message: "Invalid credentials",
       });
     }
@@ -55,7 +53,7 @@ const loginUser = async (req, res) => {
 
     let isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res.status(401).json({
+      return res.status(401).json({
         message: "Invalid credentials",
       });
     }
@@ -64,9 +62,16 @@ const loginUser = async (req, res) => {
     let token = jwt.sign({ userId: user._id }, JWT_SECRET_KEY, {
       expiresIn: "1d",
     });
+
     res.status(200).json({
       token,
-      user: { name: user.name, email: user.email, _id: user._id },
+      user: {
+        name: user.name,
+        email: user.email,
+        _id: user._id,
+        isAdmin: user.isAdmin,
+        testing: "testing",
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });

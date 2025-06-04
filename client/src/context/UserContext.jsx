@@ -3,14 +3,20 @@ import React, { createContext, useState, useEffect } from "react";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const storedUser = JSON.parse(localStorage.getItem("greenchampsUser"));
+  console.log("stored user----->", storedUser);
 
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("greenchampsUser"));
-    if (storedUser) {
-      setUser(storedUser);
-    }
-  }, []);
+  const [user, setUser] = useState(storedUser);
+
+  // useEffect(() => {
+  //   if (!user) {
+  //     const storedUser = JSON.parse(localStorage.getItem("greenchampsUser"));
+  //     console.log("stored user----->", storedUser);
+  //     if (storedUser) {
+  //       setUser(storedUser);
+  //     }
+  //   }
+  // }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

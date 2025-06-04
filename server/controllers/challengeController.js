@@ -30,7 +30,12 @@ const getChallenges = async (req, res) => {
   try {
     const { category } = req.query;
 
-    const filter = category ? { category } : {};
+    const filter = category
+      ? {
+          category: { $exists: true, $regex: new RegExp(`^${category}$`, "i") },
+        }
+      : {};
+
     const challenges = await ChallengeModel.find(filter);
     res.status(200).json(challenges);
   } catch (error) {

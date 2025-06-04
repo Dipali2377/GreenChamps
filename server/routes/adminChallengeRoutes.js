@@ -16,3 +16,5 @@ router.post("/challenges", protect, adminMiddleware, createChallenge);
 router.put("/challenges/:id", protect, adminMiddleware, updateChallenge);
 
 router.delete("/challenges/:id", protect, adminMiddleware, deleteChallenge);
+
+export default router;

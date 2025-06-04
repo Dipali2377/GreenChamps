@@ -6,6 +6,7 @@ import { UserContext } from "../context/UserContext";
 import { useContext } from "react";
 import logo from "../assets/greenchamps-logo.png";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -29,6 +30,7 @@ const Navbar = () => {
     localStorage.removeItem("greenchampsUser");
     localStorage.removeItem("greenchampsToken");
     setUser(null);
+    toast.success("Logged out successfully!");
     navigate("/login");
     setMenuOpen(false);
   };
